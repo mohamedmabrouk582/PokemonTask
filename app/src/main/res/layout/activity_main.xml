@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="pokemon"
+            type="com.example.domain.models.Pokemon" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="false">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:elevation="0dp"
+            android:fitsSystemWindows="false"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            tools:background="@color/lightTeal">
+
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/lightBlue"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                app:titleEnabled="false"
+                app:toolbarId="@+id/toolbar">
+
+                <ImageView
+                    app:loadImage="@{pokemon.image()}"
+                    android:id="@+id/imageView"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_gravity="center" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:elevation="0dp"
+                    android:fitsSystemWindows="false"
+                    android:gravity="top"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetStart="0dp"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_margin="8dp"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:id="@+id/textViewName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:fontFamily="@font/circularstd_medium"
+                            android:textColor="@color/white"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            app:fontFamily="@font/circularstd_medium"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:text="@{pokemon.name}"
+                            tools:text="Titulo" />
+
+                        <TextView
+                            android:id="@+id/textViewID"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
+                            android:alpha="0.5"
+                            android:gravity="top"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/textViewName"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/textViewName"
+                            android:text="@{String.format(@string/id_format,pokemon.id)}"
+                            tools:text="#001" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/typeRcv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textViewName"
+                            app:layout_constraintVertical_bias="0.0" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.appcompat.widget.Toolbar>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:tabGravity="fill"
+                        app:tabMode="fixed"
+                        app:tabIndicatorColor="@color/red"
+                        app:tabSelectedTextColor="@color/red"
+                        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                        app:tabTextColor="@color/black">
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="statistics" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="moves" />
+
+                    </com.google.android.material.tabs.TabLayout>
+
+
+                </LinearLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/backroundLight" />
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="20dp"
+            android:onClick="getRandom"
+            android:src="@drawable/ic_baseline_refresh_24" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</layout>

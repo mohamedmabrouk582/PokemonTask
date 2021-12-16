@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PokemonTask</string>
+    <string name="id_format">#%03d</string>
+    <string-array name="tabs">
+        <item>Statistics</item>
+        <item>Moves</item>
+    </string-array>
+</resources>

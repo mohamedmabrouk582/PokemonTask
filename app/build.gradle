@@ -1,0 +1,18 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+apply from: '../common_build.gradle'
+
+android {
+    defaultConfig {
+        applicationId "com.example.pokemontask"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation project(path: ':data')
+    implementation project(path: ':domain')
+}

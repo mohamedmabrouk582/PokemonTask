@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="move"
+            type="com.example.domain.models.PokemonMove" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:cardCornerRadius="7dp">
+        <TextView
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="uhuhuhu"
+            android:textColor="@color/white"
+            android:text="@{move.move.name}"
+            />
+    </androidx.cardview.widget.CardView>
+</layout>
