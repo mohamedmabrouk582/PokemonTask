@@ -19,6 +19,8 @@ class PokemonRepositoryUseCaseTest {
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
     private val testCoroutineScope = TestCoroutineScope()
 
+
+
     @Before
     fun setUp() {
         Dispatchers.setMain(testCoroutineDispatcher)
@@ -33,21 +35,32 @@ class PokemonRepositoryUseCaseTest {
     @Test
     fun `getRandomPokemonDetail success`() = testCoroutineDispatcher.runBlockingTest {
         TestUtils.testType = TestUtils.TestCases.Success
-        val pokemon = TestUtils.repo.getPokemonDetails().first()
+        val useCase = PokemonRepositoryUseCase(TestUtils.repo)
+        val pokemon = useCase.getPokemonDetails().first()
         assertThat(pokemon is com.example.domain.utils.Result.Success).isTrue()
     }
 
     @Test
     fun `getRandomPokemonDetail fail`() = testCoroutineDispatcher.runBlockingTest {
         TestUtils.testType = TestUtils.TestCases.Fail
-        val pokemon = TestUtils.repo.getPokemonDetails().first()
+        val useCase = PokemonRepositoryUseCase(TestUtils.repo)
+        val pokemon = useCase.getPokemonDetails().first()
         assertThat(pokemon is com.example.domain.utils.Result.Fail).isTrue()
     }
 
     @Test
     fun `getRandomPokemonDetail No connection`() = testCoroutineDispatcher.runBlockingTest {
         TestUtils.testType = TestUtils.TestCases.NoInterNet
-        val pokemon = TestUtils.repo.getPokemonDetails().first()
+        val useCase = PokemonRepositoryUseCase(TestUtils.repo)
+        val pokemon = useCase.getPokemonDetails().first()
         assertThat(pokemon is com.example.domain.utils.Result.NoInternetConnection).isTrue()
+    }
+
+    @Test
+    fun `getRandomPokemonDetail Loading`() = testCoroutineDispatcher.runBlockingTest {
+        TestUtils.testType = TestUtils.TestCases.Loading
+        val useCase = PokemonRepositoryUseCase(TestUtils.repo)
+        val pokemon = useCase.getPokemonDetails().first()
+        assertThat(pokemon is com.example.domain.utils.Result.Loading).isTrue()
     }
 }

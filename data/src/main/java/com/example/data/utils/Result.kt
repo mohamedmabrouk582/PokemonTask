@@ -7,18 +7,13 @@ import android.net.NetworkCapabilities
 import android.util.Log
 import com.example.data.R
 import com.example.domain.utils.Result
-import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.retryWhen
-import org.json.JSONObject
-import retrofit2.HttpException
 import java.io.IOException
-import java.net.SocketTimeoutException
-import javax.net.ssl.SSLHandshakeException
 
 /**
  * @name Mohamed Mabrouk

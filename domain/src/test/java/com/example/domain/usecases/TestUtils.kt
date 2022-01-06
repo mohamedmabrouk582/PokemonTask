@@ -15,7 +15,7 @@ object TestUtils {
     val pokemonDetails = Pokemon(1, "name #1")
 
     enum class TestCases {
-        Success, NoInterNet, Fail
+        Success, NoInterNet, Fail , Loading
     }
 
     val repo = object : PokemonRepository {
@@ -26,6 +26,7 @@ object TestUtils {
                         TestCases.Success -> Result.Success(pokemonDetails)
                         TestCases.NoInterNet -> Result.NoInternetConnection("No Internet")
                         TestCases.Fail -> Result.Fail(Throwable("error"))
+                        TestCases.Loading -> Result.Loading
                     }
                 )
             }
