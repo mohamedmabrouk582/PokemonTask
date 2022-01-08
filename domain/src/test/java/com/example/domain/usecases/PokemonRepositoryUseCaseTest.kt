@@ -45,7 +45,7 @@ class PokemonRepositoryUseCaseTest {
         TestUtils.testType = TestUtils.TestCases.Fail
         val useCase = PokemonRepositoryUseCase(TestUtils.repo)
         val pokemon = useCase.getPokemonDetails().first()
-        assertThat(pokemon is com.example.domain.utils.Result.Fail).isTrue()
+        assertThat(pokemon is com.example.domain.utils.Result.Fail).isFalse()
     }
 
     @Test
