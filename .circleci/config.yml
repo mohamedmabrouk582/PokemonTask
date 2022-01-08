@@ -35,6 +35,9 @@ jobs:
           system-image: system-images;android-25;google_apis;x86
 
       # And finally run the release build
+      - run :
+          - name: Run Tests
+              command: ./gradlew lint test
       - run:
           name: Assemble release build
           command: |
@@ -42,12 +45,6 @@ jobs:
       - run:
           name: Install fastlane
           command: bundle install
-
-      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path : app/build/reports
-          destination: reports
-      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: app/build/test-results
 #      - run:
 #          name: Execute fastlane
 #          command: bundle exec fastlane playstore
