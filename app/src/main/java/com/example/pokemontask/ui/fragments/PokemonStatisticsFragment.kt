@@ -34,6 +34,7 @@ class PokemonStatisticsFragment(val viewModel: PokemonViewModel) : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return DataBindingUtil.inflate<StatisticsFragmentBinding>(inflater,R.layout.statistics_fragment,container,false).apply {
             viewBinding = this
         }.root
