@@ -110,7 +110,6 @@ workflows:
     jobs:
 #      - unit-test
       - build-and-test
-      - build
       - test-and-build:
           jobs:
             - unit-test
